@@ -5,7 +5,6 @@
 from functools import partial
 
 # 3rd-party
-from transitions import Machine
 from transitions.extensions import MachineFactory
 
 
@@ -41,9 +40,9 @@ class StatusMixin(object):
     def get_kwargs(cls):
         """Get the kwargs to initialize the state machine."""
         kwargs = {
-            'initial': StatusMixin.SM_INITIAL_STATE,
-            'states': StatusMixin.SM_STATES,
-            'transitions': StatusMixin.SM_TRANSITIONS,
+            'initial': cls.SM_INITIAL_STATE,
+            'states': cls.SM_STATES,
+            'transitions': cls.SM_TRANSITIONS,
         }
         return kwargs
 
@@ -68,6 +67,7 @@ class StateMachineMixin(object):
     status_class = None  # Override this!
     machine = None  # Override this!
 
+    @property
     def state(self):
         """
         Get the items workflowstate or the initial state if none is set.
@@ -113,7 +113,7 @@ class StateMachineMixin(object):
     def __getattribute__(self, item):
         """Propagate events to the workflow state machine."""
         try:
-            return super(SiteStateMachineMixin, self).__getattribute__(item)
+            return super(StateMachineMixin, self).__getattribute__(item)
         except AttributeError:
             if item in self.machine.events:
                 return partial(self.machine.events[item].trigger, self)

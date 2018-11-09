@@ -6,6 +6,8 @@ from django.utils import timezone
 from django_transitions.workflow import StateMachineMixin
 from django_transitions.workflow import StatusMixin
 
+from transitions import Machine
+
 
 class LiveStatus(StatusMixin):
     """Workflow for Lifecycle."""
@@ -67,7 +69,7 @@ class LiveStatus(StatusMixin):
     ]
 
 
-class SiteStateMachineMixin(StateMachineMixin):
+class LifecycleStateMachineMixin(StateMachineMixin):
     """Lifecycle workflow state machine."""
 
     status_class = LiveStatus

@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 """Mixins for the django admin."""
+from django.contrib import messages
+from django.http import HttpResponseRedirect
 
 class WorkflowAdminMixin(object):
     """"

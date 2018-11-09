@@ -5,10 +5,10 @@ from django.db import models
 from django.utils import timezone
 
 from .workflows import LiveStatus
-from .workflows import StatusMixin
+from .workflows import LifecycleStateMachineMixin
 
 
-class Lifecycle(StatusMixin, models.Model):
+class Lifecycle(LifecycleStateMachineMixin, models.Model):
     """
     A model that provides workflow state and workflow date fields.
 
@@ -23,7 +23,7 @@ class Lifecycle(StatusMixin, models.Model):
         null=False,
         blank=False,
         default=LiveStatus.SM_INITIAL_STATE,
-        choices=LifeStatus.STATE_CHOICES,
+        choices=LiveStatus.STATE_CHOICES,
         max_length=32,
         help_text='Workflow state',
     )
