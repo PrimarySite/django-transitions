@@ -7,8 +7,7 @@ class WorkflowMigrationMixin(models.Model):
     """
     A mixin to provide workflow state and workflow date fields.
 
-    This is a minimal example implementation to get workfow fields
-    into an existing application.
+    This is a minimal example implementation.
     """
 
     class Meta:  # noqa: D106

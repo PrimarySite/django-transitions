@@ -12,6 +12,7 @@ from transitions import Machine
 class LiveStatus(StatusMixin):
     """Workflow for Lifecycle."""
 
+    # States
     DEVELOP = 'develop'
     LIVE = 'live'
     MAINTENANCE = 'maintenance'
@@ -24,6 +25,7 @@ class LiveStatus(StatusMixin):
         (DELETED, 'Deleted'),
     )
 
+    # Transitions
     PUBLISH = 'publish'
     MAKE_PRIVATE = 'make_private'
     MARK_DELETED = 'mark_deleted'
@@ -36,6 +38,7 @@ class LiveStatus(StatusMixin):
         REVERT_DELETED: 'Revert Delete',
     }
 
+    #
     SM_STATES = [
         DEVELOP, LIVE, MAINTENANCE, DELETED,
     ]
