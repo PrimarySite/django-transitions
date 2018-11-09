@@ -1,0 +1,15 @@
+{% extends 'admin/change_form.html' %}
+
+{% block submit_buttons_bottom %}
+
+  <!-- add the save and delete buttons -->
+  {{ block.super }}
+
+  <!-- Add buttons for available transitions -->
+  <div class="submit-row">
+    {% for event in original.get_available_events %}
+      <input type="submit" value="{{ event.label }}" name="_{{ event.transition.name }}">
+    {% endfor %}
+  </div>
+
+{% endblock %}
