@@ -1,104 +1,107 @@
+---
 version: 2
+
 apt-run: &apt-install
   name: Install apt packages
   command: |
     sudo apt update
     sudo apt install -y graphviz build-essential
+
 jobs:
   test-static:
-      docker:
-        - image: circleci/python:3.6
-          user: circleci
-      steps:
-        - checkout
-        - run:
-            name: Flake8 and complexity
-            command: |
-              python3 -m venv venv
-              source venv/bin/activate
-              pip install -r requirements/flake8.txt
-              flake8 django_transitions
-              bandit django_transitions
-              yamllint .circleci/config.yml
-              radon cc --min B drfdapc
-              radon mi --min B drfdapc
-              lizard -l python -w drfdapc
+    docker:
+      - image: circleci/python:3.6
+        user: circleci
+    steps:
+      - checkout
+      - run:
+          name: Flake8 and complexity
+          command: |
+            python3 -m venv venv
+            source venv/bin/activate
+            pip install -r requirements/flake8.txt
+            flake8 django_transitions
+            bandit django_transitions
+            yamllint .circleci/config.yml
+            radon cc --min B drfdapc
+            radon mi --min B drfdapc
+            lizard -l python -w drfdapc
 
   test-django-latest-py-3.6:
-      docker:
-        - image: circleci/python:3.6
-          user: circleci
-      steps:
-        - checkout
-        - run: *apt-install
-        - run:
-            name: Latest Django with Python 3.6
-            command: |
-              python3 -m venv venv
-              source venv/bin/activate
-              pip install -r requirements/base.txt
-              py.test testapp
+    docker:
+      - image: circleci/python:3.6
+        user: circleci
+    steps:
+      - checkout
+      - run: *apt-install
+      - run:
+          name: Latest Django with Python 3.6
+          command: |
+            python3 -m venv venv
+            source venv/bin/activate
+            pip install -r requirements/base.txt
+            py.test testapp
 
   test-django-2.0-py-3.6:
-      docker:
-        - image: circleci/python:3.6
-          user: circleci
-      steps:
-        - checkout
-        - run: *apt-install
-        - run:
-            name: Django 2.0 with Python 3.6
-            command: |
-              python3 -m venv venv
-              source venv/bin/activate
-              pip install -r requirements/django-2.0.txt
-              py.test testapp
+    docker:
+      - image: circleci/python:3.6
+        user: circleci
+    steps:
+      - checkout
+      - run: *apt-install
+      - run:
+          name: Django 2.0 with Python 3.6
+          command: |
+            python3 -m venv venv
+            source venv/bin/activate
+            pip install -r requirements/django-2.0.txt
+            py.test testapp
 
   test-django-2.1-py-3.6:
-      docker:
-        - image: circleci/python:3.6
-          user: circleci
-      steps:
-        - checkout
-        - run: *apt-install
-        - run:
-            name: Django 2.1 with Python 3.6
-            command: |
-              python3 -m venv venv
-              source venv/bin/activate
-              pip install -r requirements/django-2.1.txt
-              py.test testapp
+    docker:
+      - image: circleci/python:3.6
+        user: circleci
+    steps:
+      - checkout
+      - run: *apt-install
+      - run:
+          name: Django 2.1 with Python 3.6
+          command: |
+            python3 -m venv venv
+            source venv/bin/activate
+            pip install -r requirements/django-2.1.txt
+            py.test testapp
 
   test-django-1.11-py-2.7:
-      docker:
-        - image: circleci/python:2.7
-          user: circleci
-      steps:
-        - checkout
-        - run: *apt-install
-        - run:
-            name: Django 1.11 with Python 2.7
-            command: |
-              virtualenv venv
-              source venv/bin/activate
-              pip install mock
-              pip install -r requirements/django-1.11.txt
-              py.test testapp
+    docker:
+      - image: circleci/python:2.7
+        user: circleci
+    steps:
+      - checkout
+      - run: *apt-install
+      - run:
+          name: Django 1.11 with Python 2.7
+          command: |
+            virtualenv venv
+            source venv/bin/activate
+            pip install mock
+            pip install -r requirements/django-1.11.txt
+            py.test testapp
 
   test-django-1.11-py-3.6:
-      docker:
-        - image: circleci/python:3.6
-          user: circleci
-      steps:
-        - checkout
-        - run: *apt-install
-        - run:
-            name: Django 1.11 with Python 3.6
-            command: |
-              python3 -m venv venv
-              source venv/bin/activate
-              pip install -r requirements/django-1.11.txt
-              py.test testapp
+    docker:
+      - image: circleci/python:3.6
+        user: circleci
+    steps:
+      - checkout
+      - run: *apt-install
+      - run:
+          name: Django 1.11 with Python 3.6
+          command: |
+            python3 -m venv venv
+            source venv/bin/activate
+            pip install -r requirements/django-1.11.txt
+            py.test testapp
 
 workflows:
   version: 2
