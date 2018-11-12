@@ -1,4 +1,9 @@
 version: 2
+apt-run: &apt-install
+  name: Install apt packages
+  command: |
+    apt update
+    apt install -y graphviz build-essential
 jobs:
   test-static:
       docker:
@@ -25,6 +30,7 @@ jobs:
           user: circleci
       steps:
         - checkout
+        - run: *apt-install
         - run:
             name: Latest Django with Python 3.6
             command: |
@@ -39,6 +45,7 @@ jobs:
           user: circleci
       steps:
         - checkout
+        - run: *apt-install
         - run:
             name: Django 2.0 with Python 3.6
             command: |
@@ -53,6 +60,7 @@ jobs:
           user: circleci
       steps:
         - checkout
+        - run: *apt-install
         - run:
             name: Django 2.1 with Python 3.6
             command: |
@@ -67,6 +75,7 @@ jobs:
           user: circleci
       steps:
         - checkout
+        - run: *apt-install
         - run:
             name: Django 1.11 with Python 2.7
             command: |
@@ -81,6 +90,7 @@ jobs:
           user: circleci
       steps:
         - checkout
+        - run: *apt-install
         - run:
             name: Django 1.11 with Python 3.6
             command: |
