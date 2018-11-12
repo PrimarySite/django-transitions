@@ -9,9 +9,6 @@ class WorkflowAdminMixin(object):
     """
     A mixin to provide workflow transition actions.
 
-    This imlementation assumes that the field to store your
-    workflowstate is called wf_state.
-
     It will create an admin log entry.
     """
 
@@ -24,10 +21,10 @@ class WorkflowAdminMixin(object):
             if '_' + event['transition'].name not in request.POST:
                 continue
 
-            before = obj.wf_state
+            before = obj.state
             if getattr(obj, event['transition'].name)():
                 obj.save()
-                after = obj.wf_state
+                after = obj.state
                 message = ('Status changed from {0} to {1} by transition {2}'
                            .format(before, after, event['transition'].name))
                 self.message_user(request, message, messages.SUCCESS)
