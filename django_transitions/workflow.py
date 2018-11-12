@@ -29,7 +29,7 @@ class StatusBase(object):
         # list of available workflow states
     ]
 
-    SM_INITIAL_STATE = None  # Initial state of the state machine. Override this!
+    SM_INITIAL_STATE = None  # Initial state of the machine. Override this!
 
     SM_TRANSITIONS = [
         # Override this!
@@ -91,7 +91,13 @@ class StateMachineMixinBase(object):
         raise NotImplementedError('To be implemented in subclass')
 
     def get_available_events(self):
-        """Get available workflow transition events with labels for the current state."""
+        """
+        Get available workflow transition events for the current state.
+
+        Returns a dictionary:
+            'transition': transition event.
+            'label': human readable label for the event
+        """
         for trigger in self.machine.get_triggers(self.state):
             event = self.machine.events[trigger]
             yield {

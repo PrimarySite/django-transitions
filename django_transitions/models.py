@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 """An opinonated example for a workflow mixin."""
 
+# Django
 from django.db import models
+
 
 class WorkflowMigrationMixin(models.Model):
     """
@@ -14,17 +16,16 @@ class WorkflowMigrationMixin(models.Model):
         abstract = True
 
     wf_state = models.CharField(
-        verbose_name = 'Workflow Status',
+        verbose_name='Workflow Status',
         null=True,
         blank=True,
         max_length=32,
         help_text='Workflow state',
     )
 
-    wf_date =  models.DateTimeField(
-        verbose_name = 'Workflow Date',
+    wf_date = models.DateTimeField(
+        verbose_name='Workflow Date',
         null=True,
         blank=True,
         help_text='Indicates when this workflowstate was entered.',
     )
-
