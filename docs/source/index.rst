@@ -5,17 +5,24 @@
 Welcome to django-transitions's documentation!
 ==============================================
 
+This package provides:
+
+- Example workflow implementation.
+- Base classes and mixins to
+    - Keep it DRY
+    - Keep transitions consistent
+    - Reduce cut and paste
+    - Avoid boiler plate.
+- Admin mixin to add workflow actions to the django admin.
+
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+    :maxdepth: 2
+    :caption: Contents:
 
-.. image:: lifcycle_state_diagram.svg
+    quickstart
+    mixins
 
-.. automodule:: django_transitions.admin
-   :members:
 
-.. automodule:: django_transitions.workflow
-   :members:
 
 Indices and tables
 ==================

@@ -18,6 +18,7 @@ import sys
 root_path = os.path.abspath('../..')
 sys.path.insert(0, root_path)
 sys.path.insert(0, os.path.join(root_path, 'testproj'))
+sys.path.insert(0, os.path.join(root_path, 'testapp'))
 sys.path.insert(0, os.path.join(root_path, 'django_transitions'))
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings')
 

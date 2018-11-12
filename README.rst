@@ -16,12 +16,12 @@ A wrapper of pytransitions for django
     :alt: Documentation Status
 
 
-What this package provides:
+This package provides:
 
 - Example workflow implementation.
-- Base classes and mixins to:
+- Base classes and mixins to
     - Keep it DRY
-    - Keep your transitions consistent
+    - Keep transitions consistent
     - Reduce cut and paste
     - Avoid boiler plate.
 - Admin mixin to add workflow actions to the django admin.

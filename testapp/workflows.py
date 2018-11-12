@@ -12,12 +12,13 @@ from transitions import Machine
 class LiveStatus(StatusBase):
     """Workflow for Lifecycle."""
 
-    # States
+    # Define the states as constants
     DEVELOP = 'develop'
     LIVE = 'live'
     MAINTENANCE = 'maintenance'
     DELETED = 'deleted'
 
+    # Give the states a human readable label
     STATE_CHOICES = (
         (DEVELOP, 'Under Development'),
         (LIVE, 'Live'),
@@ -25,12 +26,14 @@ class LiveStatus(StatusBase):
         (DELETED, 'Deleted'),
     )
 
-    # Transitions
+    # Define the transitions as constants
     PUBLISH = 'publish'
     MAKE_PRIVATE = 'make_private'
     MARK_DELETED = 'mark_deleted'
     REVERT_DELETED = 'revert_delete'
 
+    # Give the transitions a human readable label
+    # which will be used in the django admin
     TRANSITION_LABELS = {
         PUBLISH : 'Make live',
         MAKE_PRIVATE: 'Under maintenamce',
@@ -39,12 +42,16 @@ class LiveStatus(StatusBase):
     }
 
     # Construct the values to pass to the state machine constructor
+
+    # The states of the machine
     SM_STATES = [
         DEVELOP, LIVE, MAINTENANCE, DELETED,
     ]
 
+    # The machines initial state
     SM_INITIAL_STATE = DEVELOP
 
+    # The transititions as a list of dictionaries
     SM_TRANSITIONS = [
         # trigger, source, destination
         {
