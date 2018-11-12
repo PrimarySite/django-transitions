@@ -3,13 +3,13 @@
 
 from django.utils import timezone
 
-from django_transitions.workflow import StateMachineMixin
-from django_transitions.workflow import StatusMixin
+from django_transitions.workflow import StateMachineMixinBase
+from django_transitions.workflow import StatusBase
 
 from transitions import Machine
 
 
-class LiveStatus(StatusMixin):
+class LiveStatus(StatusBase):
     """Workflow for Lifecycle."""
 
     # States
@@ -38,7 +38,7 @@ class LiveStatus(StatusMixin):
         REVERT_DELETED: 'Revert Delete',
     }
 
-    #
+    # Construct the values to pass to the state machine constructor
     SM_STATES = [
         DEVELOP, LIVE, MAINTENANCE, DELETED,
     ]
@@ -72,7 +72,7 @@ class LiveStatus(StatusMixin):
     ]
 
 
-class LifecycleStateMachineMixin(StateMachineMixin):
+class LifecycleStateMachineMixin(StateMachineMixinBase):
     """Lifecycle workflow state machine."""
 
     status_class = LiveStatus

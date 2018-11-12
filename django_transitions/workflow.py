@@ -8,8 +8,8 @@ from functools import partial
 from transitions.extensions import MachineFactory
 
 
-class StatusMixin(object):
-    """Mixin for transitions and status definitions."""
+class StatusBase(object):
+    """Base class for transitions and status definitions."""
 
     STATE_CHOICES = (
         # Override this!
@@ -47,12 +47,12 @@ class StatusMixin(object):
         return kwargs
 
 
-class StateMachineMixin(object):
+class StateMachineMixinBase(object):
     """
-    State machine mixin.
+    Base class for state machine mixins.
 
     * `status_class` must provide TRANSITION_LABELS
-      and the get_kwargs class method (see StatusMixin)
+      and the get_kwargs class method (see StatusBase)
     * `machine` is a transition machine
 
     e.g:
@@ -105,15 +105,15 @@ class StateMachineMixin(object):
         machine = diagram_cls(
             model=self,
             auto_transitions=False,
-            title=self.__doc__,
-            **self.machine.__class__.get_kwargs()  # noqa: C815
+            title=type(self).__name__,
+            **self.status_class.get_kwargs()  # noqa: C815
         )
         return machine.get_graph()
 
     def __getattribute__(self, item):
         """Propagate events to the workflow state machine."""
         try:
-            return super(StateMachineMixin, self).__getattribute__(item)
+            return super(StateMachineMixinBase, self).__getattribute__(item)
         except AttributeError:
             if item in self.machine.events:
                 return partial(self.machine.events[item].trigger, self)
