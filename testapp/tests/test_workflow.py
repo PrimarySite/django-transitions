@@ -82,5 +82,6 @@ class SiteWorkflowTest(TestCase):
             }
         """
         graph = self.lcycle.get_wf_graph()
+        # graph.draw('docs/source/lifcycle_state_diagram.svg', prog='dot')
 
         assert compare_no_whitespace(graph.string(), site_wf_graph)

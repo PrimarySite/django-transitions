@@ -52,16 +52,18 @@ class StateMachineMixinBase(object):
     Base class for state machine mixins.
 
     * `status_class` must provide TRANSITION_LABELS
-      and the get_kwargs class method (see StatusBase)
+      and the get_kwargs class method (see StatusBase).
     * `machine` is a transition machine
 
-    e.g:
-    machine = Machine(
-        model=None,
-        finalize_event='wf_finalize',
-        auto_transitions=False,
-        **status_class.get_kwargs()  # noqa: C815
-    )
+    e.g::
+
+        machine = Machine(
+            model=None,
+            finalize_event='wf_finalize',
+            auto_transitions=False,
+            **status_class.get_kwargs()  # noqa: C815
+        )
+
     """
 
     status_class = None  # Override this!
@@ -72,10 +74,12 @@ class StateMachineMixinBase(object):
         """
         Get the items workflowstate or the initial state if none is set.
 
-        E.g:
-        if self.wf_state:
-            return self.wf_state
-        return self.machine.initial
+        E.g::
+
+            if self.wf_state:
+                return self.wf_state
+            return self.machine.initial
+
         """
         raise NotImplementedError('To be implemented in subclass')
 
@@ -84,9 +88,11 @@ class StateMachineMixinBase(object):
         """
         Set the items workflow state.
 
-        E.g:
-        self.wf_state = value
-        return self.wf_state
+        E.g::
+
+            self.wf_state = value
+            return self.wf_state
+
         """
         raise NotImplementedError('To be implemented in subclass')
 
@@ -95,8 +101,8 @@ class StateMachineMixinBase(object):
         Get available workflow transition events for the current state.
 
         Returns a dictionary:
-            'transition': transition event.
-            'label': human readable label for the event
+            * 'transition': transition event.
+            * 'label': human readable label for the event
         """
         for trigger in self.machine.get_triggers(self.state):
             event = self.machine.events[trigger]

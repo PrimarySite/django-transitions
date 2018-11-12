@@ -9,6 +9,8 @@ Welcome to django-transitions's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+.. image:: lifcycle_state_diagram.svg
+
 .. automodule:: django_transitions.admin
    :members:
 
