@@ -1,4 +1,5 @@
-- r tests.txt
+-r tests.txt
+
 Django<2.0
 transitions>0.6<0.7
 pygraphviz
