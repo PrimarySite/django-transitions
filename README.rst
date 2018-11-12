@@ -1,6 +1,8 @@
 django-transitions
 -------------------
 
+.. inclusion-marker-do-not-remove
+
 A wrapper of pytransitions for django
 
 .. image:: https://circleci.com/gh/PrimarySite/django-transitions.svg?style=svg
