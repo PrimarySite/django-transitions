@@ -107,4 +107,5 @@ workflows:
       - test-django-2.0-py-3.6
       - test-django-2.1-py-3.6
       - test-django-1.11-py-3.6
+      - test-django-1.11-py-2.7
       - test-static
