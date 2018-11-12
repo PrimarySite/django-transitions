@@ -81,6 +81,7 @@ jobs:
             command: |
               virtualenv venv
               source venv/bin/activate
+              pip install mock
               pip install -r requirements/django-1.11.txt
               py.test testapp
 
