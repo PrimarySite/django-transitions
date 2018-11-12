@@ -3,3 +3,4 @@
 Django>2.1<2.2
 transitions>0.6<0.7
 pygraphviz
+codecov

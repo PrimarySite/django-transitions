@@ -23,9 +23,9 @@ jobs:
             flake8 django_transitions
             bandit django_transitions
             yamllint .circleci/config.yml
-            radon cc --min B drfdapc
-            radon mi --min B drfdapc
-            lizard -l python -w drfdapc
+            radon cc --min B django_transitions
+            radon mi --min B django_transitions
+            lizard -l python -w django_transitions
 
   test-django-latest-py-3.6:
     docker:
@@ -70,7 +70,8 @@ jobs:
             python3 -m venv venv
             source venv/bin/activate
             pip install -r requirements/django-2.1.txt
-            py.test testapp
+            py.test testapp --cov=django_transitions
+            codecov
 
   test-django-1.11-py-2.7:
     docker:
