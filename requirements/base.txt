@@ -1,3 +1,4 @@
+- r tests.txt
 Django
 transitions
 pygraphviz

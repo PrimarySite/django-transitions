@@ -11,7 +11,7 @@ jobs:
             command: |
               python3 -m venv venv
               source venv/bin/activate
-              pip install -r tests/requirements-flake8.txt
+              pip install -r requirements/flake8.txt
               flake8 django_transitions
               bandit django_transitions
               yamllint .circleci/config.yml
@@ -30,7 +30,7 @@ jobs:
             command: |
               python3 -m venv venv
               source venv/bin/activate
-              pip install -r tests/requirements.txt
+              pip install -r requirements/base.txt
               py.test testapp
 
   test-django-2.0-py-3.6:
@@ -44,7 +44,7 @@ jobs:
             command: |
               python3 -m venv venv
               source venv/bin/activate
-              pip install -r tests/requirements-dj20.txt
+              pip install -r requirements/django-2.0.txt
               py.test testapp
 
   test-django-1.11-py-2.7:
@@ -58,7 +58,7 @@ jobs:
             command: |
               virtualenv venv
               source venv/bin/activate
-              pip install -r tests/requirements-dj1.11.txt
+              pip install -r requirements/django-1.11.txt
               py.test testapp
 
   test-django-1.11-py-3.6:
@@ -72,7 +72,7 @@ jobs:
             command: |
               python3 -m venv venv
               source venv/bin/activate
-              pip install -r tests/requirements-dj1.11.txt
+              pip install -r requirements/django-1.11.txt
               py.test testapp
 
 workflows:
