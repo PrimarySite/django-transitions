@@ -21,6 +21,7 @@ This package provides:
 
     quickstart
     mixins
+    templates
 
 
 
