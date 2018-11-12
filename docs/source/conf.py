@@ -12,10 +12,11 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
-# import sys
+import os
+import sys
 # sys.path.insert(0, os.path.abspath('.'))
-root_path = os.path.abspath(os.path.join(os.path.abspath('.'), os.pardir))
+root_path = os.path.abspath('../..')
+sys.path.insert(0, root_path)
 sys.path.insert(0, os.path.join(root_path, 'testproj'))
 sys.path.insert(0, os.path.join(root_path, 'django_transitions'))
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings')
@@ -82,7 +83,7 @@ pygments_style = None
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = 'classic'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the

@@ -9,9 +9,11 @@ Welcome to django-transitions's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-.. automodule:: django_transitions
+.. automodule:: django_transitions.admin
    :members:
 
+.. automodule:: django_transitions.workflow
+   :members:
 
 Indices and tables
 ==================

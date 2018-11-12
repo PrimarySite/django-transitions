@@ -68,7 +68,7 @@ class StateMachineMixinBase(object):
     machine = None  # Override this!
 
     @property
-    def state(self):
+    def state(self):  # pragma: no cover
         """
         Get the items workflowstate or the initial state if none is set.
 
@@ -80,7 +80,7 @@ class StateMachineMixinBase(object):
         raise NotImplementedError('To be implemented in subclass')
 
     @state.setter
-    def state(self, value):
+    def state(self, value):  # pragma: no cover
         """
         Set the items workflow state.
 
