@@ -11,6 +11,12 @@ Lets implement the following state machine.
 
 .. image:: lifcycle_state_diagram.svg
 
+Import the dependencies::
+
+    from django_transitions.workflow import StateMachineMixinBase
+    from django_transitions.workflow import StatusBase
+    from transitions import Machine
+
 We start by defining the states and transitions
 
 .. literalinclude:: ../../testapp/workflows.py
