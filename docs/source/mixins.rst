@@ -5,8 +5,19 @@ Transition Base Classes
 ------------------------
 
 .. automodule:: django_transitions.workflow
-   :members:
 
+StatusBase
+~~~~~~~~~~~~
+
+.. autoclass::  django_transitions.workflow.StatusBase
+    :members:
+
+
+StateMachineMixinBase
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. autoclass::  django_transitions.workflow.StateMachineMixinBase
+    :members:
 
 Django Admin Mixins
 ---------------------
