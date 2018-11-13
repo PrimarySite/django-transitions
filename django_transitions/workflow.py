@@ -51,11 +51,11 @@ class StateMachineMixinBase(object):
     """
     Base class for state machine mixins.
 
-    * `status_class` must provide TRANSITION_LABELS
-      and the get_kwargs class method (see StatusBase).
-    * `machine` is a transition machine
+    Class attributes:
 
-    e.g::
+    * ``status_class`` must provide ``TRANSITION_LABELS`` property
+      and the ``get_kwargs`` class method (see ``StatusBase``).
+    * ``machine`` is a transition machine e.g::
 
         machine = Machine(
             model=None,
@@ -69,40 +69,13 @@ class StateMachineMixinBase(object):
     status_class = None  # Override this!
     machine = None  # Override this!
 
-    @property
-    def state(self):  # pragma: no cover
-        """
-        Get the items workflowstate or the initial state if none is set.
-
-        E.g::
-
-            if self.wf_state:
-                return self.wf_state
-            return self.machine.initial
-
-        """
-        raise NotImplementedError('To be implemented in subclass')
-
-    @state.setter
-    def state(self, value):  # pragma: no cover
-        """
-        Set the items workflow state.
-
-        E.g::
-
-            self.wf_state = value
-            return self.wf_state
-
-        """
-        raise NotImplementedError('To be implemented in subclass')
-
     def get_available_events(self):
         """
         Get available workflow transition events for the current state.
 
         Returns a dictionary:
-            * 'transition': transition event.
-            * 'label': human readable label for the event
+            * ``transition``: transition event.
+            * ``label``: human readable label for the event
         """
         for trigger in self.machine.get_triggers(self.state):
             event = self.machine.events[trigger]

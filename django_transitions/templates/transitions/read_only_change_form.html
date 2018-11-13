@@ -1,0 +1,11 @@
+{% extends 'admin/change_form.html' %}
+
+{% block submit_buttons_bottom %}
+
+  <div class="submit-row">
+    {% for event in original.get_available_events %}
+      <input type="submit" value="{{ event.label }}" name="_{{ event.transition.name }}">
+    {% endfor %}
+  </div>
+
+{% endblock %}
