@@ -1,5 +1,5 @@
 Templates
-----------
+==========
 
 To use the templates you have to include ``'django_transitions'`` in
 ``INSTALLED_APPS`` in the projects ``settings.py`` file::

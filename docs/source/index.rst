@@ -12,6 +12,8 @@ Welcome to django-transitions's documentation!
     quickstart
     mixins
     templates
+    faq
+    changes
 
 
 Indices and tables

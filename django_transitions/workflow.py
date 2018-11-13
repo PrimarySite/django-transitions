@@ -64,6 +64,8 @@ class StateMachineMixinBase(object):
             **status_class.get_kwargs()  # noqa: C815
         )
 
+    The transition events of the machine will be added as methods to
+    the mixin.
     """
 
     status_class = None  # Override this!
