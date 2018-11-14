@@ -1,0 +1,3 @@
+recursive-include django_transitions/templates *.html
+recursive-exclude testapp *
+recursive-exclude testproj *
