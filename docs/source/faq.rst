@@ -18,9 +18,12 @@ The packages I know of are (in no specific order):
     * `Django-XWorkflows <https://github.com/rbarrois/django_xworkflows>`_
     * `Django River <https://github.com/javrasya/django-river/>`_
 
-What is the history of django and pytransition integration?
-------------------------------------------------------------
+You should evaluate if one of the above packages are a better match
+for your needs.
 
-The code from this package was lifted from the tread `django and transitions`_
+What is the history of django and pytransitions integration?
+--------------------------------------------------------------
+
+The code from this package was lifted from the discussion in `django and transitions`_
 
 .. _django and transitions: https://github.com/pytransitions/transitions/issues/146
