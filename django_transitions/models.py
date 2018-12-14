@@ -3,6 +3,10 @@
 
 # Django
 from django.db import models
+from django.utils import timezone
+
+# Local
+from .workflow import StatusBase
 
 
 class WorkflowMigrationMixin(models.Model):
@@ -17,15 +21,18 @@ class WorkflowMigrationMixin(models.Model):
 
     wf_state = models.CharField(
         verbose_name='Workflow Status',
-        null=True,
-        blank=True,
+        null=False,
+        blank=False,
+        default=StatusBase.SM_INITIAL_STATE,
+        choices=StatusBase.STATE_CHOICES,
         max_length=32,
         help_text='Workflow state',
     )
 
     wf_date = models.DateTimeField(
         verbose_name='Workflow Date',
-        null=True,
-        blank=True,
+        null=False,
+        blank=False,
+        default=timezone.now,
         help_text='Indicates when this workflowstate was entered.',
     )

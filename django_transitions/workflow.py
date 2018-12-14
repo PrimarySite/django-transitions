@@ -11,11 +11,20 @@ from transitions.extensions import MachineFactory
 class StatusBase(object):
     """Base class for transitions and status definitions."""
 
+    DEVELOP = 'develop'
+    LIVE = 'live'
+    MAINTENANCE = 'maintenance'
+    DELETED = 'deleted'
+
     STATE_CHOICES = (
         # Override this!
         # https://docs.djangoproject.com/en/2.1/ref/models/fields/#choices
         # to provide human readable labels for states
         # (state, 'My Workflow state'),
+        (DEVELOP, 'Under Development'),
+        (LIVE, 'Live'),
+        (MAINTENANCE, 'Under Maintenance'),
+        (DELETED, 'Deleted'),
     )
 
     TRANSITION_LABELS = {
@@ -27,9 +36,10 @@ class StatusBase(object):
     SM_STATES = [
         # Override this!
         # list of available workflow states
+        DEVELOP, LIVE, MAINTENANCE, DELETED,
     ]
 
-    SM_INITIAL_STATE = None  # Initial state of the machine. Override this!
+    SM_INITIAL_STATE = DEVELOP  # Initial state of the machine. Override this!
 
     SM_TRANSITIONS = [
         # Override this!
