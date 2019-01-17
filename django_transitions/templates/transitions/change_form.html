@@ -8,7 +8,7 @@
   <!-- Add buttons for available transitions -->
   <div class="submit-row">
     {% for event in original.get_available_events %}
-      <input type="submit" value="{{ event.label }}" name="_{{ event.transition.name }}">
+      <input type="submit" class="{{ event.cssclass }}" value="{{ event.label }}" name="_{{ event.transition.name }}">
     {% endfor %}
   </div>
 

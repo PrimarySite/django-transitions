@@ -20,8 +20,8 @@ class StatusBase(object):
 
     TRANSITION_LABELS = {
         # Override this!
-        # Provide human readable labels for transitions
-        # transition: 'Label',
+        # Provide human readable labels and css class for transitions
+        # transition: {'label': 'Label', 'cssclass': 'default'}
     }
 
     SM_STATES = [
@@ -78,13 +78,13 @@ class StateMachineMixinBase(object):
         Returns a dictionary:
             * ``transition``: transition event.
             * ``label``: human readable label for the event
+            * ``cssclass``: css class that will be applied to the button
         """
         for trigger in self.machine.get_triggers(self.state):
             event = self.machine.events[trigger]
-            yield {
-                   'transition': event,
-                   'label': self.status_class.TRANSITION_LABELS[event.name],
-            }
+            ui_info = self.status_class.TRANSITION_LABELS[event.name]
+            ui_info['transition'] = event
+            yield ui_info
 
     def get_wf_graph(self):
         """Get the graph for this machine."""

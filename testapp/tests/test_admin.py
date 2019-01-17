@@ -68,7 +68,6 @@ class TestLifecycleAdmin(TestCase):
         response = lifecycle_admin.response_change(request, self.lifecycle)
 
         self.lifecycle.refresh_from_db()
-        #assert response.status_code == http_status.FOUND
         assert self.lifecycle.state == LiveStatus.DEVELOP
         mock_message.assert_called_once_with(request, message, messages.ERROR)
 
@@ -88,6 +87,5 @@ class TestLifecycleAdmin(TestCase):
         response = lifecycle_admin.response_change(request, self.lifecycle)
 
         self.lifecycle.refresh_from_db()
-        #assert response.status_code == http_status.FOUND
         assert self.lifecycle.state == LiveStatus.DEVELOP
         mock_message.assert_called_once_with(request, message, messages.SUCCESS)

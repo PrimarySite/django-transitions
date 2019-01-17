@@ -32,13 +32,13 @@ class LiveStatus(StatusBase):
     MARK_DELETED = 'mark_deleted'
     REVERT_DELETED = 'revert_delete'
 
-    # Give the transitions a human readable label
+    # Give the transitions a human readable label and css class
     # which will be used in the django admin
     TRANSITION_LABELS = {
-        PUBLISH : 'Make live',
-        MAKE_PRIVATE: 'Under maintenamce',
-        MARK_DELETED: 'Mark as deleted',
-        REVERT_DELETED: 'Revert Delete',
+        PUBLISH : {'label': 'Make live', 'cssclass': 'default'},
+        MAKE_PRIVATE: {'label': 'Under maintenance'},
+        MARK_DELETED: {'label': 'Mark as deleted', 'cssclass': 'deletelink'},
+        REVERT_DELETED: {'label': 'Revert Delete', 'cssclass': 'default'},
     }
 
     # Construct the values to pass to the state machine constructor
