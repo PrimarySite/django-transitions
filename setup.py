@@ -4,7 +4,9 @@ import sys
 from setuptools import find_packages
 from setuptools import setup
 
-version = '0.2'
+from django_transitions import __version__
+
+version = __version__
 
 setup(name='django_transitions',
       version=version,
