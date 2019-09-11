@@ -5,8 +5,8 @@ apt-run: &apt-install
   name: Install apt packages
   command: |
     sudo apt update
-    sudo apt install -y graphviz build-essential libgraphviz-dev pkg-config
-
+    sudo apt install -y python-dev build-essential pkg-config
+    udo apt install -y graphviz libgraphviz-dev
 jobs:
   test-static:
     docker:
@@ -14,6 +14,7 @@ jobs:
         user: circleci
     steps:
       - checkout
+      - run: *apt-install
       - run:
           name: Flake8 and complexity
           command: |
@@ -104,7 +105,6 @@ jobs:
             pip install -r requirements/django-1.11.txt
             py.test testapp
 
-
 all-jobs: &all-jobs
   jobs:
     - test-django-latest-py-3.7
@@ -113,7 +113,6 @@ all-jobs: &all-jobs
     - test-django-1.11-py-3.6
     - test-django-1.11-py-2.7
     - test-static
-
 
 workflows:
   version: 2
@@ -130,3 +129,4 @@ workflows:
                 - develop
                 - master
     <<: *all-jobs
+...
