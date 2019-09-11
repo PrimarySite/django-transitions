@@ -12,11 +12,6 @@ from ..workflows import LiveStatus
 from ..models import Lifecycle
 
 
-def compare_no_whitespace(a, b):
-    """Compare two base strings, disregarding whitespace."""
-    return re.sub('\s*"*', '', a) == re.sub('\s*"*', '', b)
-
-
 class SiteWorkflowTest(TestCase):
     """Test that a user has primarysite elevated Privileges."""
 
@@ -55,32 +50,13 @@ class SiteWorkflowTest(TestCase):
     def test_graph(self):
         """Compare the graph to ensure the workflow is correct."""
         self.lcycle.save()
-        site_wf_graph = """
-            digraph "" {
-                graph [compound=True,
-                    label="Lifecycle",
-                    rankdir=LR,
-                    ratio=0.3
-                ];
-                node [color=black,
-                    fillcolor=white,
-                    height=1.2,
-                    shape=circle,
-                    style=filled
-                ];
-                edge [color=black];
-                develop  [color=red,
-                    fillcolor=darksalmon,
-                    shape=doublecircle];
-                develop -> live  [label=publish];
-                develop -> deleted   [label=mark_deleted];
-                live -> deleted  [label=mark_deleted];
-                live -> maintenance  [label=make_private];
-                deleted -> maintenance   [label=revert_delete];
-                maintenance -> live  [label=publish];
-                maintenance -> deleted   [label=mark_deleted];
-            }
-        """
         graph = self.lcycle.get_wf_graph()
 
-        assert compare_no_whitespace(graph.string(), site_wf_graph)
+        assert 'develop -> live' in graph.string()
+        assert 'develop -> deleted' in graph.string()
+        assert 'live -> deleted' in graph.string()
+        assert 'live -> maintenance' in graph.string()
+        assert 'deleted -> maintenance' in graph.string()
+        assert 'maintenance -> live' in graph.string()
+        assert 'maintenance -> deleted' in graph.string()
+
