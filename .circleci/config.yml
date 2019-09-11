@@ -104,16 +104,21 @@ jobs:
             pip install -r requirements/django-1.11.txt
             py.test testapp
 
+
+all-jobs: &all-jobs
+  jobs:
+    - test-django-latest-py-3.7
+    - test-django-2.0-py-3.6
+    - test-django-2.1-py-3.6
+    - test-django-1.11-py-3.6
+    - test-django-1.11-py-2.7
+    - test-static
+
+
 workflows:
   version: 2
   build-and-test:
-    jobs: &all-jobs
-      - test-django-latest-py-3.7
-      - test-django-2.0-py-3.6
-      - test-django-2.1-py-3.6
-      - test-django-1.11-py-3.6
-      - test-django-1.11-py-2.7
-      - test-static
+    <<: *all-jobs
 
   nightly:
     triggers:
@@ -124,5 +129,4 @@ workflows:
               only:
                 - develop
                 - master
-    jobs:
-      <<: *all-jobs
+    <<: *all-jobs
