@@ -5,8 +5,8 @@ apt-run: &apt-install
   name: Install apt packages
   command: |
     sudo apt update
-    sudo apt install -y build-essential pkg-config
-    udo apt install -y graphviz libgraphviz-dev
+    sudo apt install -y apt-utils build-essential pkg-config
+    sudo apt install -y graphviz libgraphviz-dev
 jobs:
   test-static:
     docker:
