@@ -14,6 +14,7 @@ Welcome to django-transitions's documentation!
     templates
     faq
     changes
+    contributors
 
 
 Indices and tables
